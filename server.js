@@ -7,9 +7,12 @@ var app = express();
 
 app.use(bodyParser.json());
 app.use(cors());
-mongoose.connect('mongodb://localhost/mini-birds-mongoose');
 
-var Schema = mongoose.Schema;
+
+mongoose.connect('mongodb://localhost/mini-birds-mongoose');
+mongoose.connection.once('open', function() {
+  console.log('Connected to Mongo');
+});
 
 var port = 8001;
 app.listen(port, function() {
@@ -19,3 +22,5 @@ app.listen(port, function() {
 app.get('/', function(req, res, next) {
   res.status(200).send('Hi!');
 })
+
+module.exports = app;
