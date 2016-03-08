@@ -1,5 +1,5 @@
 var mongoose = require('mongoose'),
-    ObjectId = mongoose.ObjectId;
+    ObjectId = mongoose.Schema.ObjectId;
 
 var sightingSchema = new mongoose.Schema({
   user: ObjectId,
@@ -10,6 +10,7 @@ var sightingSchema = new mongoose.Schema({
       type: String,
       lowercase: true,
       enum: ["extinct", "least concern", "near threatened"]
+    }
   }],
 
   numberSeen: {type: String, min: 1},
